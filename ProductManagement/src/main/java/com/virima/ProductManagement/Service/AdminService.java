@@ -78,12 +78,13 @@ public class AdminService {
 
     public ResponseEntity<Object> savecategory(Category category, HttpSession session) {
 
+
         Admin admin=(Admin) session.getAttribute("admin");
-        System.out.println(admin);
+        System.out.println(session.getAttribute("admin"));
         if(admin!=null)
         {
             Category category1=categoryRepository.findByName(category.getName());
-            if(category1!=null)
+            if(category1==null)
             {
                 categoryRepository.save(category);
                 map.put("message","category added successfully");
